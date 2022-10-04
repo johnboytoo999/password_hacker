@@ -55,7 +55,7 @@ while (true)
     IWebElement submitButton = driver.FindElement(By.ClassName("btn_001"));
     submitButton.Click();
     trytime = trytime + 1;
-    Console.WriteLine("第"+ trytime + "次測試:" + password);
+    Console.WriteLine("第" + trytime + "次測試:" + password);
 
     IWebElement badRequestButton = driver.FindElement(By.ClassName("modal_btn_confirm"));
     badRequestButton.Click();
