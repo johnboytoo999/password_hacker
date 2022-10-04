@@ -48,6 +48,7 @@ while (true)
     if(password.Length > hightest)
     {
         Console.WriteLine("無法找到密碼");
+        break;
     }
     inputPassword.SendKeys(password);
 
