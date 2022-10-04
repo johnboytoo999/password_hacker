@@ -10,7 +10,7 @@ var lowtest = 6;
 //密碼最大位數
 var hightest = 8;
 string passwordPattern = @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,15}$";
-var testPassword = data.ToCharArray();
+var passwordDataArray = data.ToCharArray();
 
 //破解帳號
 var account = "test";
@@ -85,22 +85,22 @@ while (true)
 
 string FindNext(string pw)
 {
-    var a = pw.ToCharArray();
+    var psArray = pw.ToCharArray();
 
     //從最後一位開始+1
-    for (int x = a.Length - 1; x >= 0; x--)
+    for (int x = psArray.Length - 1; x >= 0; x--)
     {
-        var c = Array.IndexOf(testPassword, a[x]);
+        var pwDataPosition = Array.IndexOf(passwordDataArray, psArray[x]);
 
         //當前位如果不是資料最後一位則自動 + 1
-        if (c != testPassword.Length - 1)
+        if (pwDataPosition != passwordDataArray.Length - 1)
         {
-            a[x] = testPassword[c + 1];
-            if (x != a.Length - 1)
+            psArray[x] = passwordDataArray[pwDataPosition + 1];
+            if (x != psArray.Length - 1)
             {
-                for (int y = x + 1; y <= a.Length - 1; y++)
+                for (int y = x + 1; y <= psArray.Length - 1; y++)
                 {
-                    a[y] = testPassword[0];
+                    psArray[y] = passwordDataArray[0];
                 }
             }
             break;
@@ -116,7 +116,7 @@ string FindNext(string pw)
         }
     }
 
-    return new string(a);
+    return new string(psArray);
 }
 
 string GenerateNewPassword(int count){
@@ -124,7 +124,7 @@ string GenerateNewPassword(int count){
     string pw = string.Empty;
     for (int i = 0; i < count; i++)
     {
-        pw += testPassword[0];
+        pw += passwordDataArray[0];
     }
 
     return pw;
