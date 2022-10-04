@@ -1,6 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using System;
 using System.Text.RegularExpressions;
 
 var _url = "http://xxxxxxx";
@@ -69,9 +70,7 @@ while (true)
         pw = GenerateNewPassword(lowtest);
     }
 
-    //從最後一位開始+1
     Regex rgx = new(passwordPattern);
-
     while (true)
     {
         pw = FindNext(pw);
@@ -87,7 +86,7 @@ string FindNext(string pw)
 {
     var psArray = pw.ToCharArray();
 
-    //從最後一位開始+1
+    //從最後一位開始 + 1
     for (int x = psArray.Length - 1; x >= 0; x--)
     {
         var pwDataPosition = Array.IndexOf(passwordDataArray, psArray[x]);
